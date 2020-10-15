@@ -1,5 +1,5 @@
 ;(function () {
-  var VERSION = '2.2.3';
+  var VERSION = '2.2.4';
   var pluginName = 'datepicker';
   var autoInitSelector = '.datepicker-here';
   var $body; var $datepickersContainer;

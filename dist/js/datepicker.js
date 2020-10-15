@@ -1,5 +1,5 @@
 ;(function (window, $, undefined) { ;(function () {
-  var VERSION = '2.2.3';
+  var VERSION = '2.2.4';
   var pluginName = 'datepicker';
   var autoInitSelector = '.datepicker-here';
   var $body; var $datepickersContainer;
@@ -366,6 +366,7 @@
     },
 
     formatDate: function (string, date) {
+      // eslint-disable-next-line no-param-reassign
       date = date || this.date;
       var result = string;
       var boundary = this._getWordBoundaryRegExp;
@@ -480,7 +481,14 @@
       }
 
       if (_this.view == 'days') {
-        if (date.getMonth() != d.month && opts.moveToOtherMonthsOnSelect) {
+        if (
+          opts.moveToOtherMonthsOnSelect &&
+          (
+            (
+              date.getYear() != d.year && date.getMonth() == d.month
+            ) || date.getMonth() != d.month
+          )
+        ) {
           newDate = new Date(date.getFullYear(), date.getMonth(), 1);
         }
       }
@@ -742,6 +750,7 @@
     },
 
     _setPositionClasses: function (pos) {
+      // eslint-disable-next-line no-param-reassign
       pos = pos.split(' ');
       var main = pos[0];
       var sec = pos[1];
@@ -755,6 +764,7 @@
     },
 
     setPosition: function (position) {
+      // eslint-disable-next-line no-param-reassign
       position = position || this.opts.position;
 
       var dims = this._getDimensions(this.$el);
@@ -856,6 +866,7 @@
     },
 
     _changeView: function (date, dir) {
+      // eslint-disable-next-line no-param-reassign
       date = date || this.focused || this.date;
 
       var nextView = dir == 'up' ? this.viewIndex + 1 : this.viewIndex - 1;
@@ -985,6 +996,7 @@
     },
 
     _focusNextCell: function (keyCode, type) {
+      // eslint-disable-next-line no-param-reassign
       type = type || this.cellType;
 
       var date = datepicker.getParsedDate(this._getFocusedDate());
@@ -1052,6 +1064,7 @@
     },
 
     _getCell: function (date, type) {
+      // eslint-disable-next-line no-param-reassign
       type = type || this.cellType;
 
       var d = datepicker.getParsedDate(date);
@@ -1451,6 +1464,7 @@
      */
   datepicker.resetTime = function (date) {
     if (typeof date != 'object') { return; }
+    // eslint-disable-next-line no-param-reassign
     date = datepicker.getParsedDate(date);
     return new Date(date.year, date.month, date.date);
   };
