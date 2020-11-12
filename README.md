@@ -15,6 +15,14 @@ bower i --save air-datepicker
 npm i --save air-datepicker
 ```
 
+## How to compile a js file
+- Update VERSION variable
+- Run the command:
+```
+gulp buildJs
+```
+Then go to dist/js and pick the compiled ready-to-use version
+
 ## Usage
 ```javascript
 $('.my-datepicker').datepicker([options])
@@ -25,6 +33,12 @@ $('.my-datepicker').datepicker([options])
 * [In Russian](http://t1m0n.name/air-datepicker/docs/index-ru.html)
 
 ## Change log
+
+### v2.2.5
+~ in toogleSelected mode and the already selected range, next click on either arrival or departure restarts range over
+
+### v2.2.4
+* fixed redering of the wrong month
 
 ### v2.2.3
 * fixed min,max dates in decade mode

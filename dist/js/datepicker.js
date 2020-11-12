@@ -1,5 +1,5 @@
 ;(function (window, $, undefined) { ;(function () {
-  var VERSION = '2.2.4';
+  var VERSION = '2.2.5';
   var pluginName = 'datepicker';
   var autoInitSelector = '.datepicker-here';
   var $body; var $datepickersContainer;
@@ -1112,7 +1112,16 @@
             this._trigger('clickCell', selectedDate);
           }
         } else {
-          this.removeDate(selectedDate);
+          // Remove range dates and start over again
+          this.selectedDates = [];
+          this.minRange = '';
+          this.maxRange = '';
+          this.lastSelectedDate = '';
+
+          this.views[this.currentView]._render();
+          this._setInputValue();
+
+          this._trigger('clickCell', selectedDate);
         }
       } else if (this.opts.toggleSelected){
         this.removeDate(selectedDate);
